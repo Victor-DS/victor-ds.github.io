@@ -18,15 +18,15 @@
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=4.5.2</generator>
 	<item>
-		<title>O melhor aplicativo de humor para celular!</title>
-		<link>LINK VEM AQUI</link>
+		<title>Este é o título de um ad!</title>
+		<link>https://play.google.com/store/apps/developer?id=Victor+Santiago</link>
 		<comments>null</comments>
-		<pubDate>Mon, 30 May 2016 22:03:05 +0000</pubDate>
+		<pubDate>Tue, 31 May 2016 15:32:05 +0000</pubDate>
 		<dc:creator>Victor D.S.</dc:creator>
 		<category>Aplicativos</category>
 		<guid isPermaLink="false">http://victor-ds.github.io/</guid>
-		<description>DESCRIPTION</description>
-		<content:encoded>CONTENT</content:encoded>
+		<description>Descrição de um exemplo de anúncio...</description>
+		<content:encoded>Ei, este é o conteúdo do anúncio!</content:encoded>
 		<wfw:commentRss>null</wfw:commentRss>
 		<slash:comments>0</slash:comments>
   </item>
