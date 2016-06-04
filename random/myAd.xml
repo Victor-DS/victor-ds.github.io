@@ -26,7 +26,7 @@
 		<category>Aplicativos</category>
 		<guid isPermaLink="false">http://victor-ds.github.io/</guid>
 		<description>Descrição de um exemplo de anúncio...</description>
-		<content:encoded>Ei, este é o conteúdo do anúncio! <br><br>Teste de <a rel="nofollow" href="market://search?q=pub:Willy+Wonka">link</a></content:encoded>
+		<content:encoded><![CDATA[Ei, este é o conteúdo do anúncio! <br><br>Teste de <a rel="nofollow" href="market://search?q=pub:Willy+Wonka">link</a>]]></content:encoded>
 		<wfw:commentRss>null</wfw:commentRss>
 		<slash:comments>0</slash:comments>
   </item>
