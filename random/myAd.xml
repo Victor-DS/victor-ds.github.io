@@ -25,7 +25,7 @@
 		<dc:creator>Victor D.S.</dc:creator>
 		<category>Aplicativos</category>
 		<guid isPermaLink="false">http://victor-ds.github.io/</guid>
-		<description>Descrição de um exemplo de anúncio...<br /><br />Teste de <a href="market://search?q=pub:Willy+Wonka">link</a></description>
+		<description>Descrição de um exemplo de anúncio...<br/><br/>Teste de <a href="market://search?q=pub:Willy+Wonka">link</a></description>
 		<content:encoded>Ei, este é o conteúdo do anúncio!</content:encoded>
 		<wfw:commentRss>null</wfw:commentRss>
 		<slash:comments>0</slash:comments>
