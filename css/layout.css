@@ -316,6 +316,62 @@ ul#nav li.current a { color: #F06000; }
   100% { width: 60%;  }
 }
 
+.english {
+    width: 95%;
+    -moz-animation: sql 2s ease;
+    -webkit-animation: sql 2s ease;
+}
+@-moz-keyframes english {
+  0%   { width: 0px;  }
+  100% { width: 95%;  }
+}
+@-webkit-keyframes english {
+  0%   { width: 0px;  }
+  100% { width: 95%;  }
+}
+
+.francais {
+    width: 45%;
+    -moz-animation: sql 2s ease;
+    -webkit-animation: sql 2s ease;
+}
+@-moz-keyframes francais {
+  0%   { width: 0px;  }
+  100% { width: 45%;  }
+}
+@-webkit-keyframes francais {
+  0%   { width: 0px;  }
+  100% { width: 45%;  }
+}
+
+.espanol {
+    width: 25%;
+    -moz-animation: sql 2s ease;
+    -webkit-animation: sql 2s ease;
+}
+@-moz-keyframes espanol {
+  0%   { width: 0px;  }
+  100% { width: 25%;  }
+}
+@-webkit-keyframes espanol {
+  0%   { width: 0px;  }
+  100% { width: 25%;  }
+}
+
+.portugues {
+    width: 100%;
+    -moz-animation: sql 2s ease;
+    -webkit-animation: sql 2s ease;
+}
+@-moz-keyframes portugues {
+  0%   { width: 0px;  }
+  100% { width: 100%;  }
+}
+@-webkit-keyframes portugues {
+  0%   { width: 0px;  }
+  100% { width: 100%;  }
+}
+
 /* ------------------------------------------------------------------ */
 /* e. Portfolio Section
 /* ------------------------------------------------------------------ */
