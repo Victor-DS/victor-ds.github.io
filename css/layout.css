@@ -316,6 +316,34 @@ ul#nav li.current a { color: #F06000; }
   100% { width: 60%;  }
 }
 
+.csharp {
+    width: 40%;
+    -moz-animation: csharp 2s ease;
+    -webkit-animation: csharp 2s ease;
+}
+@-moz-keyframes csharp {
+  0%   { width: 0px;  }
+  100% { width: 40%;  }
+}
+@-webkit-keyframes csharp {
+  0%   { width: 0px;  }
+  100% { width: 40%;  }
+}
+
+.plsql {
+    width: 40%;
+    -moz-animation: plsql 2s ease;
+    -webkit-animation: plsql 2s ease;
+}
+@-moz-keyframes plsql {
+  0%   { width: 0px;  }
+  100% { width: 40%;  }
+}
+@-webkit-keyframes plsql {
+  0%   { width: 0px;  }
+  100% { width: 40%;  }
+}
+
 .english {
     width: 95%;
     -moz-animation: sql 2s ease;
