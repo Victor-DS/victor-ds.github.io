@@ -19,17 +19,17 @@ var y = d3.scaleLinear()
 
 var line = d3.line()
     .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.close); });
+    .y(function(d) { return y(d.rating); });
 
 d3.tsv("TSV/SaoPaulo.tsv", function(d) {
   d.date = parseTime(d.date);
-  d.close = +d.close;
+  d.rating = +d.rating;
   return d;
 }, function(error, data) {
   if (error) throw error;
 
   x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain(d3.extent(data, function(d) { return d.close; }));
+  y.domain(d3.extent(data, function(d) { return d.rating; }));
 
   g.append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -45,7 +45,7 @@ d3.tsv("TSV/SaoPaulo.tsv", function(d) {
       .attr("y", 6)
       .attr("dy", "0.71em")
       .attr("text-anchor", "end")
-      .text("Price ($)");
+      .text("Rating ($)");
 
   g.append("path")
       .datum(data)
