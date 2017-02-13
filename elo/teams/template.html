@@ -3,6 +3,8 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
+var team = window.location.search.substring(1);
+    
 var svg = d3.select("svg"),
     margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = +svg.attr("width") - margin.left - margin.right,
@@ -21,7 +23,7 @@ var line = d3.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.rating); });
 
-d3.tsv("TSV/saopaulo.tsv", function(d) {
+d3.tsv("TSV/"+team+".tsv", function(d) {
   d.date = parseTime(d.date);
   d.rating = +d.rating;
   return d;
@@ -33,9 +35,7 @@ d3.tsv("TSV/saopaulo.tsv", function(d) {
 
   g.append("g")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x))
-    .select(".domain")
-      .remove();
+      .call(d3.axisBottom(x));
 
   g.append("g")
       .call(d3.axisLeft(y))
@@ -53,7 +53,7 @@ d3.tsv("TSV/saopaulo.tsv", function(d) {
       .attr("stroke", "steelblue")
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
-      .attr("stroke-width", 1.5)
+      .attr("stroke-width", 1)
       .attr("d", line);
 });
 
