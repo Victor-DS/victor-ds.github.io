@@ -9,7 +9,7 @@ var svg = d3.select("svg"),
     height = +svg.attr("height") - margin.top - margin.bottom,
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var parseTime = d3.timeParse("%d-%b-%y");
+var parseTime = d3.timeParse("%d-%b-%Y");
 
 var x = d3.scaleTime()
     .rangeRound([0, width]);
@@ -21,7 +21,7 @@ var line = d3.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.rating); });
 
-d3.tsv("TSV/SaoPaulo.tsv", function(d) {
+d3.tsv("TSV/saopaulo.tsv", function(d) {
   d.date = parseTime(d.date);
   d.rating = +d.rating;
   return d;
@@ -45,7 +45,7 @@ d3.tsv("TSV/SaoPaulo.tsv", function(d) {
       .attr("y", 6)
       .attr("dy", "0.71em")
       .attr("text-anchor", "end")
-      .text("Rating ($)");
+      .text("Rating");
 
   g.append("path")
       .datum(data)
