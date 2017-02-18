@@ -84,11 +84,14 @@ var pageHeight = Math.max(
     document.documentElement["offsetHeight"]
 );
 
+pageHeight -= 50;
+pageWidth -= 50;
+
 var margin = {top: 20, right: 200, bottom: 100, left: 50},
     margin2 = { top: 430, right: 10, bottom: 20, left: 40 },
     width = pageWidth - margin.left - margin.right,
     height = pageHeight - margin.top - margin.bottom,
-    height2 = 500 - margin2.top - margin2.bottom;
+    height2 = pageHeight - margin2.top - margin2.bottom;
 
 var parseDate = d3.time.format("%d-%b-%Y").parse;
 var bisectDate = d3.bisector(function(d) { return d.date; }).left;
