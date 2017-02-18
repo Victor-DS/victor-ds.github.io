@@ -68,10 +68,26 @@ body {
 
 var team = window.location.search.substring(1);
 
+var pageWidth = Math.max(
+    document.documentElement["clientWidth"],
+    document.body["scrollWidth"],
+    document.documentElement["scrollWidth"],
+    document.body["offsetWidth"],
+    document.documentElement["offsetWidth"]
+);
+
+var pageHeight = Math.max(
+    document.documentElement["clientHeight"],
+    document.body["scrollHeight"],
+    document.documentElement["scrollHeight"],
+    document.body["offsetHeight"],
+    document.documentElement["offsetHeight"]
+);
+
 var margin = {top: 20, right: 200, bottom: 100, left: 50},
     margin2 = { top: 430, right: 10, bottom: 20, left: 40 },
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom,
+    width = pageWidth - margin.left - margin.right,
+    height = pageHeight - margin.top - margin.bottom,
     height2 = 500 - margin2.top - margin2.bottom;
 
 var parseDate = d3.time.format("%d-%b-%Y").parse;
