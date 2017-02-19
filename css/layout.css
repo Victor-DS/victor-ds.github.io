@@ -261,17 +261,17 @@ ul#nav li.current a { color: #F06000; }
 }
 
 .objc {
-    width: 70%;
+    width: 60%;
     -moz-animation: objc 2s ease;
     -webkit-animation: objc 2s ease;
 }
 @-moz-keyframes objc {
   0%   { width: 0px;  }
-  100% { width: 70%;  }
+  100% { width: 60%;  }
 }
 @-webkit-keyframes objc {
   0%   { width: 0px;  }
-  100% { width: 70%;  }
+  100% { width: 60%;  }
 }
 
 .css {
