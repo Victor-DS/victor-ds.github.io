@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Soccer Elo Ratings</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="intro">
+            <center>
+                <div class="timestamp-container">
+                    <p class="timestamp">UPDATED ON 03/01/2017</p>
+                </div>
+                <h1>Elo Ratings</h1>
+                <h2 class="article-subtitle">Brazilian Soccer Elo Ratings</h2>
+                <p class="methodology-link"><strong>See also</strong>: <a target="_blank" href="https://github.com/Victor-DS/Soccer-Elo-Ratings">GitHub</a> | <a target="_blank" href="https://en.wikipedia.org/wiki/World_Football_Elo_Ratings">Wikipedia</a>
+                </p>
+            </center>
+        </div>
+    </div>
+    <div class="container">
+        <div id="standings">
+            <h3>Ranking</h3>
+            <div id="standings-table-wrapper">
+                <table id="standings-table" class="18">
+                    <thead>
+                        <tr class="sep">
+                            <th colspan="12" class=""></th>
+                        </tr>
+                        <tr class="lower">
+                            <th id="col-elo" data-tsorter="numeric" class="num elo bold">
+                                <div class="desktop">Elo Ratings</div>
+                                <div class="mobile">Elo</div>
+                            </th>
+                            <th id="col-team" data-tsorter="data-str" class="team bold">Team</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="num elo">1816</td>
+                            <td class="team"><a href="teams/chart?palmeiras" target="_blank">Palmeiras</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1787</td>
+                            <td class="team"><a href="teams/chart?santos" target="_blank">Santos</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1774</td>
+                            <td class="team"><a href="teams/chart?flamengo" target="_blank">Flamengo</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1702</td>
+                            <td class="team"><a href="teams/chart?atleticomg" target="_blank">Atlético-MG</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1693</td>
+                            <td class="team"><a href="teams/chart?cruzeiro" target="_blank">Cruzeiro</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1692</td>
+                            <td class="team"><a href="teams/chart?portuguesa" target="_blank">Portuguesa</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1685</td>
+                            <td class="team"><a href="teams/chart?atleticopr" target="_blank">Atlético-PR</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1685</td>
+                            <td class="team"><a href="teams/chart?saopaulo" target="_blank">São Paulo</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1681</td>
+                            <td class="team"><a href="teams/chart?botafogo" target="_blank">Botafogo</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1662</td>
+                            <td class="team"><a href="teams/chart?chapecoense" target="_blank">Chapecoense</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1656</td>
+                            <td class="team"><a href="teams/chart?corinthians" target="_blank">Corinthians</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1643</td>
+                            <td class="team"><a href="teams/chart?pontepreta" target="_blank">Ponte Preta</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1635</td>
+                            <td class="team"><a href="teams/chart?brasildepelotas" target="_blank">Brasil de Pelotas</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1631</td>
+                            <td class="team"><a href="teams/chart?coritiba" target="_blank">Coritiba</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1630</td>
+                            <td class="team"><a href="teams/chart?sport" target="_blank">Sport</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1630</td>
+                            <td class="team"><a href="teams/chart?vasco" target="_blank">Vasco</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1626</td>
+                            <td class="team"><a href="teams/chart?barueri" target="_blank">Barueri</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1616</td>
+                            <td class="team"><a href="teams/chart?vitoria" target="_blank">Vitória</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1616</td>
+                            <td class="team"><a href="teams/chart?bangu" target="_blank">Bangu</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1604</td>
+                            <td class="team"><a href="teams/chart?internacional" target="_blank">Internacional</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1604</td>
+                            <td class="team"><a href="teams/chart?gremio" target="_blank">Grêmio</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1604</td>
+                            <td class="team"><a href="teams/chart?caxias" target="_blank">Caxias</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1600</td>
+                            <td class="team"><a href="teams/chart?fluminense" target="_blank">Fluminense</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1596</td>
+                            <td class="team"><a href="teams/chart?juventude" target="_blank">Juventude</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1594</td>
+                            <td class="team"><a href="teams/chart?operarioms" target="_blank">Operário-MS</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1592</td>
+                            <td class="team"><a href="teams/chart?ferroviaria" target="_blank">Ferroviária</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1583</td>
+                            <td class="team"><a href="teams/chart?santoandre" target="_blank">Santo André</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1580</td>
+                            <td class="team"><a href="teams/chart?gama" target="_blank">Gama</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1579</td>
+                            <td class="team"><a href="teams/chart?saojosesp" target="_blank">São José-SP</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1579</td>
+                            <td class="team"><a href="teams/chart?colorado" target="_blank">Colorado</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1564</td>
+                            <td class="team"><a href="teams/chart?fortaleza" target="_blank">Fortaleza</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1558</td>
+                            <td class="team"><a href="teams/chart?goias" target="_blank">Goiás</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1555</td>
+                            <td class="team"><a href="teams/chart?bahia" target="_blank">Bahia</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1550</td>
+                            <td class="team"><a href="teams/chart?parana" target="_blank">Paraná</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1549</td>
+                            <td class="team"><a href="teams/chart?ceara" target="_blank">Ceará</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1549</td>
+                            <td class="team"><a href="teams/chart?botafogosp" target="_blank">Botafogo-SP</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1548</td>
+                            <td class="team"><a href="teams/chart?saocaetano" target="_blank">São Caetano</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1548</td>
+                            <td class="team"><a href="teams/chart?avai" target="_blank">Avaí</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1546</td>
+                            <td class="team"><a href="teams/chart?riobrancoes" target="_blank">Rio Branco-ES</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1543</td>
+                            <td class="team"><a href="teams/chart?paysandu" target="_blank">Paysandu</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1539</td>
+                            <td class="team"><a href="teams/chart?londrina" target="_blank">Londrina</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1538</td>
+                            <td class="team"><a href="teams/chart?ipatinga" target="_blank">Ipatinga</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1534</td>
+                            <td class="team"><a href="teams/chart?gremiomaringa" target="_blank">Grêmio Maringá</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1528</td>
+                            <td class="team"><a href="teams/chart?pinheiros" target="_blank">Pinheiros</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1526</td>
+                            <td class="team"><a href="teams/chart?atleticogo" target="_blank">Atlético-GO</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1521</td>
+                            <td class="team"><a href="teams/chart?joinville" target="_blank">Joinville</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1521</td>
+                            <td class="team"><a href="teams/chart?internacionalsm" target="_blank">Internacional SM</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1519</td>
+                            <td class="team"><a href="teams/chart?remo" target="_blank">Remo</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1519</td>
+                            <td class="team"><a href="teams/chart?interdelimeira" target="_blank">Inter de Limeira</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1519</td>
+                            <td class="team"><a href="teams/chart?saobento" target="_blank">São Bento</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1518</td>
+                            <td class="team"><a href="teams/chart?figueirense" target="_blank">Figueirense</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1514</td>
+                            <td class="team"><a href="teams/chart?uberaba" target="_blank">Uberaba</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1514</td>
+                            <td class="team"><a href="teams/chart?americano" target="_blank">Americano</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1512</td>
+                            <td class="team"><a href="teams/chart?americarj" target="_blank">America-RJ</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1512</td>
+                            <td class="team"><a href="teams/chart?brasiliense" target="_blank">Brasiliense</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1511</td>
+                            <td class="team"><a href="teams/chart?treze" target="_blank">Treze</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1508</td>
+                            <td class="team"><a href="teams/chart?bragantino" target="_blank">Bragantino</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1507</td>
+                            <td class="team"><a href="teams/chart?anapolina" target="_blank">Anapolina</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1506</td>
+                            <td class="team"><a href="teams/chart?criciuma" target="_blank">Criciúma</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1505</td>
+                            <td class="team"><a href="teams/chart?campogrande" target="_blank">Campo Grande</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1505</td>
+                            <td class="team"><a href="teams/chart?francana" target="_blank">Francana</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1505</td>
+                            <td class="team"><a href="teams/chart?caldense" target="_blank">Caldense</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1504</td>
+                            <td class="team"><a href="teams/chart?uberlandia" target="_blank">Uberlândia</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1502</td>
+                            <td class="team"><a href="teams/chart?xvdepiracicaba" target="_blank">XV de Piracicaba</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1501</td>
+                            <td class="team"><a href="teams/chart?guarani" target="_blank">Guarani</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1501</td>
+                            <td class="team"><a href="teams/chart?noroeste" target="_blank">Noroeste</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1500</td>
+                            <td class="team"><a href="teams/chart?xvdejau" target="_blank">XV de Jaú</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1490</td>
+                            <td class="team"><a href="teams/chart?prudente" target="_blank">Prudente</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1487</td>
+                            <td class="team"><a href="teams/chart?comercialsp" target="_blank">Comercial-SP</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1484</td>
+                            <td class="team"><a href="teams/chart?santacruz" target="_blank">Santa Cruz</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1482</td>
+                            <td class="team"><a href="teams/chart?itumbiara" target="_blank">Itumbiara</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1482</td>
+                            <td class="team"><a href="teams/chart?americasp" target="_blank">América-SP</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1477</td>
+                            <td class="team"><a href="teams/chart?americamg" target="_blank">América-MG</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1474</td>
+                            <td class="team"><a href="teams/chart?csa" target="_blank">CSA</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1471</td>
+                            <td class="team"><a href="teams/chart?dombosco" target="_blank">Dom Bosco</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1471</td>
+                            <td class="team"><a href="teams/chart?nacionalam" target="_blank">Nacional-AM</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1466</td>
+                            <td class="team"><a href="teams/chart?comercialms" target="_blank">Comercial-MS</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1465</td>
+                            <td class="team"><a href="teams/chart?olaria" target="_blank">Olaria</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1464</td>
+                            <td class="team"><a href="teams/chart?vilanova" target="_blank">Vila Nova</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1463</td>
+                            <td class="team"><a href="teams/chart?juventussp" target="_blank">Juventus-SP</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1463</td>
+                            <td class="team"><a href="teams/chart?crb" target="_blank">CRB</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1458</td>
+                            <td class="team"><a href="teams/chart?taguatinga" target="_blank">Taguatinga</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1457</td>
+                            <td class="team"><a href="teams/chart?novohamburgo" target="_blank">Novo Hamburgo</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1457</td>
+                            <td class="team"><a href="teams/chart?botafogopb" target="_blank">Botafogo-PB</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1454</td>
+                            <td class="team"><a href="teams/chart?autoesportepb" target="_blank">Auto Esporte-PB</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1452</td>
+                            <td class="team"><a href="teams/chart?central" target="_blank">Central</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1452</td>
+                            <td class="team"><a href="teams/chart?alecrim" target="_blank">Alecrim</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1452</td>
+                            <td class="team"><a href="teams/chart?asa" target="_blank">ASA</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1448</td>
+                            <td class="team"><a href="teams/chart?campinense" target="_blank">Campinense</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1445</td>
+                            <td class="team"><a href="teams/chart?brasilia" target="_blank">Brasília</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1444</td>
+                            <td class="team"><a href="teams/chart?sobradinho" target="_blank">Sobradinho</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1444</td>
+                            <td class="team"><a href="teams/chart?catuense" target="_blank">Catuense</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1442</td>
+                            <td class="team"><a href="teams/chart?mixto" target="_blank">Mixto</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1438</td>
+                            <td class="team"><a href="teams/chart?potiguardemossoro" target="_blank">Potiguar de Mossoró</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1437</td>
+                            <td class="team"><a href="teams/chart?itabuna" target="_blank">Itabuna</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1434</td>
+                            <td class="team"><a href="teams/chart?maranhao" target="_blank">Maranhão</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1431</td>
+                            <td class="team"><a href="teams/chart?vitoriaes" target="_blank">Vitória-ES</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1428</td>
+                            <td class="team"><a href="teams/chart?aacolatina" target="_blank">AA Colatina</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1423</td>
+                            <td class="team"><a href="teams/chart?tunaluso" target="_blank">Tuna Luso</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1423</td>
+                            <td class="team"><a href="teams/chart?saopaulors" target="_blank">São Paulo-RS</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1423</td>
+                            <td class="team"><a href="teams/chart?goytacaz" target="_blank">Goytacaz</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1418</td>
+                            <td class="team"><a href="teams/chart?nautico" target="_blank">Náutico</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1414</td>
+                            <td class="team"><a href="teams/chart?uniaosaojoao" target="_blank">União São João</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1414</td>
+                            <td class="team"><a href="teams/chart?operariopr" target="_blank">Operário-PR</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1409</td>
+                            <td class="team"><a href="teams/chart?leonico" target="_blank">Leônico</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1406</td>
+                            <td class="team"><a href="teams/chart?tiradentespi" target="_blank">Tiradentes-PI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1405</td>
+                            <td class="team"><a href="teams/chart?voltaredonda" target="_blank">Volta Redonda</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1404</td>
+                            <td class="team"><a href="teams/chart?operariofc" target="_blank">Operário FC</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1400</td>
+                            <td class="team"><a href="teams/chart?desportivaferroviaria" target="_blank">Desportiva Ferroviária</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1393</td>
+                            <td class="team"><a href="teams/chart?villanovamg" target="_blank">Villa Nova-MG</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1392</td>
+                            <td class="team"><a href="teams/chart?corumbaense" target="_blank">Corumbaense</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1391</td>
+                            <td class="team"><a href="teams/chart?galicia" target="_blank">Galícia</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1390</td>
+                            <td class="team"><a href="teams/chart?ceub" target="_blank">CEUB</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1386</td>
+                            <td class="team"><a href="teams/chart?guara" target="_blank">Guará</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1383</td>
+                            <td class="team"><a href="teams/chart?fludefeira" target="_blank">Flu de Feira</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1383</td>
+                            <td class="team"><a href="teams/chart?abc" target="_blank">ABC</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1371</td>
+                            <td class="team"><a href="teams/chart?americarn" target="_blank">América-RN</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1356</td>
+                            <td class="team"><a href="teams/chart?piaui" target="_blank">Piauí</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1337</td>
+                            <td class="team"><a href="teams/chart?sergipe" target="_blank">Sergipe</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1337</td>
+                            <td class="team"><a href="teams/chart?motoclub" target="_blank">Moto Club</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1334</td>
+                            <td class="team"><a href="teams/chart?fast" target="_blank">Fast</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1334</td>
+                            <td class="team"><a href="teams/chart?goiania" target="_blank">Goiânia</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1321</td>
+                            <td class="team"><a href="teams/chart?flamengopi" target="_blank">Flamengo-PI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1320</td>
+                            <td class="team"><a href="teams/chart?rionegroam" target="_blank">Rio Negro-AM</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1305</td>
+                            <td class="team"><a href="teams/chart?sampaiocorrea" target="_blank">Sampaio Corrêa</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1303</td>
+                            <td class="team"><a href="teams/chart?itabaiana" target="_blank">Itabaiana</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1294</td>
+                            <td class="team"><a href="teams/chart?ferroviario" target="_blank">Ferroviário</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1292</td>
+                            <td class="team"><a href="teams/chart?confianca" target="_blank">Confiança</a></td>
+                        </tr>
+                        <tr>
+                            <td class="num elo">1289</td>
+                            <td class="team"><a href="teams/chart?riverpi" target="_blank">River-PI</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="footer">
+            <div class="notes">
+                <p>This an Elo Ranking of Brazilian Teams. It's based on <a href="https://en.wikipedia.org/wiki/World_Football_Elo_Ratings"><b>World Football Elo Ratings</b> formula</a>. If you want more details of its technical implementation, please visit the <a href="https://github.com/Victor-DS/Soccer-Elo-Ratings">GitHub page</a>. The idea it's to see the "strength" of each team accross the years and its ups and downs, and not necessarily to try to predict who would win a given match, although you could use it for that reason.
+                </p>
+            </div>
+            <div class="additional-credits notes">
+                <p>Algorithm implemented by <a href="https://victor-ds.github.io">Victor Santiago</a>. Inspired by <a href="https://www.fivethirtyeight.com">FiveThrityEight</a> and <a href="http://www.eloratings.net/">World Football Elo Ratings</a>.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
