@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Soccer Elo Ratings</title>
+    <title>Ranking Elo Brasileiro</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -13,11 +13,11 @@
         <div id="intro">
             <center>
                 <div class="timestamp-container">
-                    <p class="timestamp">UPDATED ON 03/01/2017</p>
+                    <p class="timestamp">ATUALIZADO EM 18/02/2017</p>
                 </div>
-                <h1>Elo Ratings</h1>
-                <h2 class="article-subtitle">Brazilian Soccer Elo Ratings</h2>
-                <p class="methodology-link"><strong>See also</strong>: <a target="_blank" href="https://github.com/Victor-DS/Soccer-Elo-Ratings">GitHub</a> | <a target="_blank" href="https://en.wikipedia.org/wiki/World_Football_Elo_Ratings">Wikipedia</a>
+                <h1>Ranking Elo</h1>
+                <h2 class="article-subtitle">Ranking Elo de Clubes Brasileiros</h2>
+                <p class="methodology-link"><strong>Mais informações</strong>: <a target="_blank" href="https://github.com/Victor-DS/Soccer-Elo-Ratings">GitHub</a> | <a target="_blank" href="https://en.wikipedia.org/wiki/World_Football_Elo_Ratings">Wikipedia</a>
                 </p>
             </center>
         </div>
@@ -28,15 +28,36 @@
             <div id="standings-table-wrapper">
                 <table id="standings-table" class="18">
                     <thead>
+<!--                        <tr class="desktop">
+                            <th colspan="2" class="top nosort"></th>
+                            <th colspan="4" class="top bordered nosort">Probabilidades</th>
+                        </tr>
+                        <tr class="mobile">
+                            <th colspan="2" class="top nosort"></th>
+                            <th colspan="4" class="top bordered nosort">Probabilidades</th>
+                        </tr> -->
                         <tr class="sep">
                             <th colspan="12" class=""></th>
                         </tr>
                         <tr class="lower">
                             <th id="col-elo" data-tsorter="numeric" class="num elo bold">
-                                <div class="desktop">Rating</div>
+                                <div class="desktop">Ranking Elo</div>
                                 <div class="mobile">Elo</div>
                             </th>
-                            <th id="col-team" data-tsorter="data-str" class="team bold">Team</th>
+                            <!-- <th id="col-elo-change" data-tsorter="data-val" class="num desktop bold elo-change">1-week change</th> -->
+                            <th id="col-team" data-tsorter="data-str" class="team bold">Time</th>
+<!--                            <th id="col-make-conf-champ" data-tsorter="data-val" class="pct">
+                                <div class="desktop">Rebaixamento</div>
+                                <div class="mobile">Cair</div>
+                            </th>
+                            <th id="col-make-superbowl" data-tsorter="data-val" class="pct">
+                                <div class="desktop">Libertadores</div>
+                                <div class="mobile">Libert.</div>
+                            </th>
+                            <th id="col-win-superbowl" data-tsorter="data-val" class=" pct sorted">
+                                <div class="desktop">Campeão</div>
+                                <div class="mobile">Campeão</div>
+                            </th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -564,11 +585,11 @@
     <div class="container">
         <div id="footer">
             <div class="notes">
-                <p>This an Elo Ranking of Brazilian Teams. It's based on <a href="https://en.wikipedia.org/wiki/World_Football_Elo_Ratings"><b>World Football Elo Ratings</b> formula</a>. If you want more details of its technical implementation, please visit the <a href="https://github.com/Victor-DS/Soccer-Elo-Ratings">GitHub page</a>. The idea it's to see the "strength" of each team accross the years and its ups and downs, and not necessarily to try to predict who would win a given match, although you could use it for that reason.
+                <p>Este é um ranking de clubes brasileiros baseado na <a href="https://en.wikipedia.org/wiki/World_Football_Elo_Ratings">fórmula de Elo usada no <b>World Football Elo Ratings</b></a>. Se você quiser mais detalhes sobre a implementação técnica, veja a página no <a href="https://github.com/Victor-DS/Soccer-Elo-Ratings">GitHub</a>. A idéia deste Ranking é medir a força de cada time através dos anos, ao invés de tentar prever o resultado futuro das partidas (apesar de você conseguir usar o Elo para isto).
                 </p>
             </div>
             <div class="additional-credits notes">
-                <p>Algorithm implemented by <a href="https://victor-ds.github.io">Victor Santiago</a>. Inspired by <a href="https://www.fivethirtyeight.com">FiveThrityEight</a> and <a href="http://www.eloratings.net/">World Football Elo Ratings</a>.</p>
+                <p>Algoritmo implementado por <a href="https://victor-ds.github.io">Victor Santiago</a>. Inspirado no <a href="https://www.fivethirtyeight.com">FiveThrityEight</a> e <a href="http://www.eloratings.net/">World Football Elo Ratings</a>.</p>
             </div>
         </div>
     </div>
