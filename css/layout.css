@@ -233,31 +233,45 @@ ul#nav li.current a { color: #F06000; }
 /**   SKILLS     **/
 
 .java {
-  	width: 90%;
+  	width: 80%;
   	-moz-animation: java 2s ease;
   	-webkit-animation: java 2s ease;
 }
 @-moz-keyframes java {
   0%   { width: 0px;  }
-  100% { width: 90%;  }
+  100% { width: 80%;  }
 }
 @-webkit-keyframes java {
   0%   { width: 0px;  }
-  100% { width: 90%;  }
+  100% { width: 80%;  }
 }
 
 .javascript {
-    width: 75%;
+    width: 55%;
     -moz-animation: javascript 2s ease;
     -webkit-animation: javascript 2s ease;
 }
 @-moz-keyframes javascript {
   0%   { width: 0px;  }
-  100% { width: 75%;  }
+  100% { width: 55%;  }
 }
 @-webkit-keyframes javascript {
   0%   { width: 0px;  }
-  100% { width: 75%;  }
+  100% { width: 55%;  }
+}
+
+.haskell {
+    width: 25%;
+    -moz-animation: haskell 2s ease;
+    -webkit-animation: haskell 2s ease;
+}
+@-moz-keyframes haskell {
+  0%   { width: 0px;  }
+  100% { width: 25%;  }
+}
+@-webkit-keyframes haskell {
+  0%   { width: 0px;  }
+  100% { width: 25%;  }
 }
 
 .objc {
