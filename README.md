@@ -1,5 +1,4 @@
 # victor-ds.github.io
-Minha página no GitHub.
+My personal webpage.
 
-Acho que você quis ir para <a href="http://victor-ds.github.io/">este endereço</a>, não?
-
+To see it live, go to <a href="https://victorsantiago.me">victorsantiago.me</a>.
