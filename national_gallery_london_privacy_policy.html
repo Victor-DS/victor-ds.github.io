@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+    h2 {
+      margin-top: 1.5em;
+      color: #222;
+    }
+    p {
+      margin: 0.5em 0;
+    }
+    footer {
+      margin-top: 3em;
+      font-size: 0.9em;
+      text-align: center;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p><strong>Effective Date:</strong> <span id="effective-date"></span></p>
+
+  <p><span id="app-name"></span> ("we," "our," or "us") respects your privacy. This Privacy Policy explains how our application handles user information.</p>
+
+  <h2>Information We Collect</h2>
+  <p>Our app does <strong>not</strong> collect, store, or share any personally identifiable information.</p>
+  <p>- When you take a photo of an artwork within the app, that photo is used <strong>only on your device</strong> to identify the artwork and display its related audio guide and details.</p>
+  <p>- The photo is <strong>not uploaded to any server</strong> and is <strong>not stored</strong> once the app has provided the artwork information.</p>
+
+  <h2>Data Storage</h2>
+  <p>- All processing of photos occurs locally on your device.</p>
+  <p>- We do not maintain a backend database of user photos, accounts, or activity.</p>
+  <p>- No login or signup is required to use the app.</p>
+
+  <h2>Third-Party Services</h2>
+  <p>Our app does not use third-party analytics, advertising, or tracking services.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>Our app is suitable for general audiences and does not knowingly collect personal data from children.</p>
+
+  <h2>Your Privacy Rights</h2>
+  <p>Since no personal data is collected or stored, there is no personal data to access, modify, or delete.</p>
+
+  <h2>Changes to This Privacy Policy</h2>
+  <p>We may update this Privacy Policy from time to time. Updates will be posted within the app or on this page.</p>
+
+  <h2>Contact Us</h2>
+  <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+  <p><a id="contact-email"></a></p>
+
+  <footer>
+    &copy; <span id="year"></span> <span id="app-name-footer"></span>. All rights reserved.
+  </footer>
+
+  <script>
+    // 🔧 Replace these values per app:
+    const config = {
+      appName: "National Gallery London Guide",
+      effectiveDate: "September 16, 2025",
+      contactEmail: "contact@victorsantiago.me",
+      year: new Date().getFullYear()
+    };
+
+    // Inject values into the page
+    document.getElementById("app-name").textContent = config.appName;
+    document.getElementById("app-name-footer").textContent = config.appName;
+    document.getElementById("effective-date").textContent = config.effectiveDate;
+    document.getElementById("contact-email").textContent = config.contactEmail;
+    document.getElementById("contact-email").href = "mailto:" + config.contactEmail;
+    document.getElementById("year").textContent = config.year;
+  </script>
+</body>
+</html>
+
