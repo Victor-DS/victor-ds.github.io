@@ -670,40 +670,98 @@
       timeDisplay.textContent = `${formatTime(current)}/${formatTime(duration)}`;
     }
 
-    // Call API with image
-    async function callAPI(imageFile) {
+    // Compress image before sending to API
+    function compressImage(file, maxWidth = 1920, maxHeight = 1920, quality = 0.85) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         
-        reader.onload = async function(e) {
-          try {
-            // Remove data URI prefix if present
-            const base64Image = e.target.result.split(',')[1] || e.target.result;
+        reader.onload = function(e) {
+          const img = new Image();
+          
+          img.onload = function() {
+            // Calculate new dimensions while maintaining aspect ratio
+            let width = img.width;
+            let height = img.height;
             
-            const response = await fetch(`${API_BASE_URL}/ngl/public`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                image: base64Image
-              })
-            });
-            
-            if (!response.ok) {
-              const error = await response.json();
-              throw new Error(error.message || `HTTP error! status: ${response.status}`);
+            if (width > maxWidth || height > maxHeight) {
+              const ratio = Math.min(maxWidth / width, maxHeight / height);
+              width = Math.round(width * ratio);
+              height = Math.round(height * ratio);
             }
             
-            const data = await response.json();
-            resolve(data);
-          } catch (error) {
-            reject(error);
-          }
+            // Create canvas and draw resized image
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Convert to blob with compression
+            canvas.toBlob(
+              (blob) => {
+                if (blob) {
+                  resolve(blob);
+                } else {
+                  reject(new Error('Failed to compress image'));
+                }
+              },
+              'image/jpeg', // Use JPEG for better compression
+              quality
+            );
+          };
+          
+          img.onerror = () => reject(new Error('Failed to load image'));
+          img.src = e.target.result;
         };
         
         reader.onerror = () => reject(new Error('Failed to read image file'));
-        reader.readAsDataURL(imageFile);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Call API with image
+    async function callAPI(imageFile) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          // Compress the image first
+          const compressedBlob = await compressImage(imageFile);
+          
+          // Convert compressed blob to base64
+          const reader = new FileReader();
+          
+          reader.onload = async function(e) {
+            try {
+              // Remove data URI prefix if present
+              const base64Image = e.target.result.split(',')[1] || e.target.result;
+              
+              const response = await fetch(`${API_BASE_URL}/ngl/public`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  image: base64Image
+                })
+              });
+              
+              if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || `HTTP error! status: ${response.status}`);
+              }
+              
+              const data = await response.json();
+              resolve(data);
+            } catch (error) {
+              reject(error);
+            }
+          };
+          
+          reader.onerror = () => reject(new Error('Failed to read compressed image'));
+          reader.readAsDataURL(compressedBlob);
+        } catch (error) {
+          reject(error);
+        }
       });
     }
 
