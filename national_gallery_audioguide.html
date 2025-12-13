@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>The National Gallery, London - Audioguide online</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      margin: 0;
+      color: #2c2c2c;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 400;
+      padding-top: 3rem;
+      margin-bottom: 0;
+      line-height: 1.2;
+      color: #2c2c2c;
+      letter-spacing: -0.03em;
+    }
+
+    .button-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .instructions {
+      padding-bottom: 3rem;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #6b6b6b;
+      line-height: 1.6;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.06);
+      }
+    }
+
+    .camera-button {
+      width: 200px;
+      height: 200px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      transition: all 0.2s ease;
+      border: 1px solid #e8e8e8;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .camera-button:active {
+      animation: none;
+      transform: scale(0.98);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .camera-button:hover {
+      animation: none;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+      border-color: #d0d0d0;
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .camera-icon {
+      width: 80px;
+      height: 80px;
+      color: #6b6b6b;
+      position: relative;
+    }
+
+    .camera-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    #file-input {
+      display: none;
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #2c2c2c;
+      color: #ffffff;
+      padding: 14px 24px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 300;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Preview area (optional, for testing) */
+    .preview-container {
+      margin-top: 2rem;
+      display: none;
+    }
+
+    .preview-container.show {
+      display: block;
+    }
+
+    .preview-image {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Artwork display screen */
+    .artwork-screen {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 0 20px;
+    }
+
+    .artwork-screen.show {
+      display: flex;
+    }
+
+    .home-screen {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .home-screen.hidden {
+      display: none;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 1.5rem;
+      left: 20px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #6b6b6b;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 10;
+    }
+
+    .back-button:hover {
+      color: #2c2c2c;
+    }
+
+    .artwork-image-container {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .artwork-image {
+      max-width: 100%;
+      max-height: 50vh;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      object-fit: contain;
+    }
+
+    .artwork-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-bottom: 2rem;
+    }
+
+    .artwork-title {
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: #2c2c2c;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .artwork-artist {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #6b6b6b;
+      margin-bottom: 0.25rem;
+    }
+
+    .artwork-date {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #9b9b9b;
+      margin-bottom: 2rem;
+    }
+
+    .language-selector {
+      margin-bottom: 2rem;
+    }
+
+    .language-select {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #2c2c2c;
+      background: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 6px;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+
+    .language-select:hover {
+      border-color: #d0d0d0;
+    }
+
+    .language-select:focus {
+      outline: none;
+      border-color: #6b6b6b;
+    }
+
+    .audio-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .play-pause-button {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #2c2c2c;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(44, 44, 44, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .play-pause-button:hover {
+      background: #1a1a1a;
+      box-shadow: 0 6px 20px rgba(44, 44, 44, 0.3);
+      transform: scale(1.05);
+    }
+
+    .play-pause-button:active {
+      transform: scale(0.95);
+    }
+
+    .play-pause-icon {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+
+    .time-display {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #6b6b6b;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .loading {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1001;
+    }
+
+    .loading.show {
+      display: block;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e8e8e8;
+      border-top-color: #2c2c2c;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hidden-audio {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+        padding-top: 2rem;
+      }
+
+      .instructions {
+        font-size: 0.9rem;
+        padding-bottom: 2rem;
+      }
+
+      .camera-button {
+        width: 180px;
+        height: 180px;
+      }
+
+      .camera-icon {
+        width: 70px;
+        height: 70px;
+      }
+
+      .artwork-title {
+        font-size: 1.5rem;
+      }
+
+      .artwork-artist {
+        font-size: 1rem;
+      }
+
+      .artwork-image-container {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      h1 {
+        font-size: 1.75rem;
+        padding-top: 1.5rem;
+      }
+
+      .instructions {
+        font-size: 0.85rem;
+        padding-bottom: 1.5rem;
+      }
+
+      .camera-button {
+        width: 160px;
+        height: 160px;
+      }
+
+      .camera-icon {
+        width: 60px;
+        height: 60px;
+      }
+
+      .artwork-title {
+        font-size: 1.35rem;
+      }
+
+      .artwork-artist {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="home-screen" id="home-screen">
+    <div class="container">
+      <h1>The National Gallery Audioguide</h1>
+      
+      <div class="button-container">
+        <button class="camera-button" id="camera-button" aria-label="Take or upload photo">
+          <div class="camera-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12C15.5 10.067 13.933 8.5 12 8.5C10.067 8.5 8.5 10.067 8.5 12C8.5 13.933 10.067 15.5 12 15.5Z" fill="currentColor"/>
+              <path d="M9 2L7.17 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4H16.83L15 2H9ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </button>
+      </div>
+
+      <p class="instructions">Tap the button above to take a photo of a painting. We'll identify it and show you the audioguide.</p>
+
+      <input type="file" id="file-input" accept="image/*" capture="environment">
+    </div>
+  </div>
+
+  <div class="artwork-screen" id="artwork-screen">
+    <button class="back-button" id="back-button" aria-label="Go back">←</button>
+    <div class="container">
+      <div class="artwork-image-container">
+        <img class="artwork-image" id="artwork-image" src="" alt="Artwork">
+      </div>
+      
+      <div class="artwork-info">
+        <div>
+          <h2 class="artwork-title" id="artwork-title"></h2>
+          <p class="artwork-artist" id="artwork-artist"></p>
+          <p class="artwork-date" id="artwork-date"></p>
+        </div>
+
+        <div>
+          <div class="language-selector">
+            <select class="language-select" id="language-select">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="zh">中文</option>
+              <option value="pt_br">Português (Brasil)</option>
+              <option value="it">Italiano</option>
+            </select>
+          </div>
+
+          <div class="audio-player">
+            <button class="play-pause-button" id="play-pause-button" aria-label="Play/Pause">
+              <svg class="play-pause-icon" id="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg class="play-pause-icon" id="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+              </svg>
+            </button>
+            <div class="time-display" id="time-display">0:00/0:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio-element" class="hidden-audio" preload="metadata"></audio>
+
+  <div class="loading" id="loading">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API_BASE_URL = 'https://9lhbtx0wcl.execute-api.us-east-1.amazonaws.com/prod';
+    
+    const cameraButton = document.getElementById('camera-button');
+    const fileInput = document.getElementById('file-input');
+    const toast = document.getElementById('toast');
+    const homeScreen = document.getElementById('home-screen');
+    const artworkScreen = document.getElementById('artwork-screen');
+    const backButton = document.getElementById('back-button');
+    const loading = document.getElementById('loading');
+    
+    const artworkImage = document.getElementById('artwork-image');
+    const artworkTitle = document.getElementById('artwork-title');
+    const artworkArtist = document.getElementById('artwork-artist');
+    const artworkDate = document.getElementById('artwork-date');
+    const languageSelect = document.getElementById('language-select');
+    const playPauseButton = document.getElementById('play-pause-button');
+    const playIcon = document.getElementById('play-icon');
+    const pauseIcon = document.getElementById('pause-icon');
+    const timeDisplay = document.getElementById('time-display');
+    const audioElement = document.getElementById('audio-element');
+    
+    let currentArtworkData = null;
+
+    // Show toast notification
+    function showToast(message, duration = 3000) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, duration);
+    }
+
+    // Format time in MM:SS format
+    function formatTime(seconds) {
+      if (isNaN(seconds) || !isFinite(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Update time display
+    function updateTimeDisplay() {
+      const current = audioElement.currentTime || 0;
+      const duration = audioElement.duration || 0;
+      timeDisplay.textContent = `${formatTime(current)}/${formatTime(duration)}`;
+    }
+
+    // Call API with image
+    async function callAPI(imageFile) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        
+        reader.onload = async function(e) {
+          try {
+            // Remove data URI prefix if present
+            const base64Image = e.target.result.split(',')[1] || e.target.result;
+            
+            const response = await fetch(`${API_BASE_URL}/ngl/public`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                image: base64Image
+              })
+            });
+            
+            if (!response.ok) {
+              const error = await response.json();
+              throw new Error(error.message || `HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            resolve(data);
+          } catch (error) {
+            reject(error);
+          }
+        };
+        
+        reader.onerror = () => reject(new Error('Failed to read image file'));
+        reader.readAsDataURL(imageFile);
+      });
+    }
+
+    // Display artwork information
+    function displayArtwork(data) {
+      currentArtworkData = data;
+      
+      artworkImage.src = data.painting_url;
+      artworkTitle.textContent = data.title;
+      artworkArtist.textContent = data.artist;
+      artworkDate.textContent = data.date;
+      
+      // Show artwork screen, hide home screen
+      homeScreen.classList.add('hidden');
+      artworkScreen.classList.add('show');
+      
+      // Load default language (English)
+      loadAudio('en');
+    }
+
+    // Load audio for selected language
+    function loadAudio(language) {
+      const audioKey = `audio_${language}_url`;
+      const audioUrl = currentArtworkData[audioKey];
+      
+      if (!audioUrl || audioUrl === 'Unknown') {
+        showToast(`Audio not available in ${languageSelect.options[languageSelect.selectedIndex].text}`);
+        audioElement.pause();
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        return;
+      }
+      
+      audioElement.src = audioUrl;
+      audioElement.load();
+      timeDisplay.textContent = '0:00/0:00';
+    }
+
+    // Toggle play/pause
+    function togglePlayPause() {
+      if (audioElement.paused) {
+        audioElement.play().catch(error => {
+          showToast('Error playing audio');
+          console.error('Audio play error:', error);
+        });
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+      } else {
+        audioElement.pause();
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+      }
+    }
+
+    // Handle file selection
+    async function handleFileSelect(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      // Show loading
+      loading.classList.add('show');
+      
+      try {
+        const artworkData = await callAPI(file);
+        displayArtwork(artworkData);
+      } catch (error) {
+        console.error('Error:', error);
+        let errorMessage = 'Failed to identify artwork';
+        
+        if (error.message.includes('404') || error.message.includes('No similar artwork')) {
+          errorMessage = 'No artwork found. Please try another photo.';
+        } else if (error.message.includes('429')) {
+          errorMessage = 'Too many requests. Please try again in a moment.';
+        } else if (error.message) {
+          errorMessage = error.message;
+        }
+        
+        showToast(errorMessage, 5000);
+      } finally {
+        loading.classList.remove('show');
+        // Reset file input
+        fileInput.value = '';
+      }
+    }
+
+    // Go back to home screen
+    function goBack() {
+      artworkScreen.classList.remove('show');
+      homeScreen.classList.remove('hidden');
+      audioElement.pause();
+      audioElement.src = '';
+      currentArtworkData = null;
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+      timeDisplay.textContent = '0:00/0:00';
+    }
+
+    // Event listeners
+    cameraButton.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', handleFileSelect);
+    
+    backButton.addEventListener('click', goBack);
+    
+    playPauseButton.addEventListener('click', togglePlayPause);
+    
+    languageSelect.addEventListener('change', (e) => {
+      const wasPlaying = !audioElement.paused;
+      audioElement.pause();
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+      
+      loadAudio(e.target.value);
+      
+      if (wasPlaying) {
+        audioElement.addEventListener('loadeddata', () => {
+          audioElement.play().catch(error => {
+            console.error('Audio play error:', error);
+          });
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+        }, { once: true });
+      }
+    });
+    
+    // Audio event listeners
+    audioElement.addEventListener('timeupdate', updateTimeDisplay);
+    audioElement.addEventListener('loadedmetadata', updateTimeDisplay);
+    audioElement.addEventListener('ended', () => {
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+      audioElement.currentTime = 0;
+      updateTimeDisplay();
+    });
+
+    // Prevent default drag behaviors
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      document.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    });
+  </script>
+</body>
+</html>
