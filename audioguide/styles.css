@@ -33,11 +33,15 @@ body {
 }
 
 .home-screen .container {
-  height: 100vh;
+  height: 100vh; /* Fallback for older browsers */
+  height: 100dvh; /* Dynamic viewport height - accounts for mobile browser UI */
   max-height: 100vh;
+  max-height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
   justify-content: space-between;
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
   overflow: hidden;
 }
 
@@ -51,7 +55,7 @@ body {
 h1 {
   font-size: 2.5rem;
   font-weight: 400;
-  padding-top: 1.5rem;
+  padding-top: max(1.5rem, env(safe-area-inset-top, 0) + 1rem);
   margin-bottom: 0;
   line-height: 1.2;
   color: #2c2c2c;
@@ -71,7 +75,7 @@ h1 {
 }
 
 .instructions {
-  padding-bottom: 1.5rem;
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0) + 1rem);
   padding-top: 0.5rem;
   font-size: 0.95rem;
   font-weight: 300;
@@ -195,8 +199,12 @@ h1 {
 .home-screen {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; /* Fallback for older browsers */
+  height: 100dvh; /* Dynamic viewport height - accounts for mobile browser UI */
   max-height: 100vh;
+  max-height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   position: relative;
   overflow: hidden;
