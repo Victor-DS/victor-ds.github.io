@@ -294,8 +294,17 @@ window.addEventListener('popstate', (event) => {
   }
 });
 
+// Set viewport height to account for mobile browser UI
+function setViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
 // Initialize history state on page load
 window.addEventListener('load', () => {
+  // Set viewport height
+  setViewportHeight();
+  
   // Remove hash if present
   if (window.location.hash) {
     window.location.hash = '';
@@ -309,6 +318,12 @@ window.addEventListener('load', () => {
   // Ensure home screen is shown on initial load
   homeScreen.classList.remove('hidden');
   artworkScreen.classList.remove('show');
+});
+
+// Update viewport height on resize and orientation change
+window.addEventListener('resize', setViewportHeight);
+window.addEventListener('orientationchange', () => {
+  setTimeout(setViewportHeight, 100);
 });
 
 // Event listeners
