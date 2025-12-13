@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  
+  <!-- Primary Meta Tags -->
+  <title>Free National Gallery London Audioguide - Artwork Audio Tours</title>
+  <meta name="title" content="Free National Gallery London Audioguide - Artwork Audio Tours" />
+  <meta name="description" content="Free audioguide for The National Gallery in London. Take a photo of any painting to instantly access audio guides in multiple languages. No app download required - works on any mobile device." />
+  <meta name="keywords" content="National Gallery London, free audioguide, London art museum, National Gallery audio tour, free museum guide, London paintings, art audio guide, Trafalgar Square museum, free gallery tour, National Gallery app alternative" />
+  <meta name="author" content="Victor Domingos Santiago" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://victorsantiago.me/audioguide/national_gallery.html" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://victorsantiago.me/audioguide/national_gallery.html" />
+  <meta property="og:title" content="Free National Gallery London Audioguide - Artwork Audio Tours" />
+  <meta property="og:description" content="Free audioguide for The National Gallery in London. Take a photo of any painting to instantly access audio guides in multiple languages." />
+  <meta property="og:image" content="https://victorsantiago.me/national_gallery_audioguide.jpg" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:site_name" content="National Gallery Audioguide" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://victorsantiago.me/audioguide/national_gallery.html" />
+  <meta property="twitter:title" content="Free National Gallery London Audioguide - Artwork Audio Tours" />
+  <meta property="twitter:description" content="Free audioguide for The National Gallery in London. Take a photo of any painting to instantly access audio guides in multiple languages." />
+  <meta property="twitter:image" content="https://victorsantiago.me/national_gallery_audioguide.jpg" />
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "National Gallery London Audioguide",
+    "description": "Free audioguide service for The National Gallery in London. Take a photo of any painting to instantly access audio guides in multiple languages including English, Spanish, French, Chinese, Portuguese, and Italian.",
+    "url": "https://victorsantiago.me/audioguide/national_gallery.html",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    },
+    "featureList": [
+      "Free audioguide",
+      "Multiple language support",
+      "Photo recognition",
+      "No app download required",
+      "Works on mobile devices"
+    ],
+    "about": {
+      "@type": "TouristAttraction",
+      "name": "The National Gallery",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Trafalgar Square",
+        "addressLocality": "London",
+        "addressCountry": "GB"
+      }
+    }
+  }
+  </script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="home-screen" id="home-screen">
+    <div class="container">
+      <h1>The National Gallery Audioguide</h1>
+      
+      <div class="button-container">
+        <button class="camera-button" id="camera-button" aria-label="Take or upload photo">
+          <div class="camera-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12C15.5 10.067 13.933 8.5 12 8.5C10.067 8.5 8.5 10.067 8.5 12C8.5 13.933 10.067 15.5 12 15.5Z" fill="currentColor"/>
+              <path d="M9 2L7.17 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4H16.83L15 2H9ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </button>
+      </div>
+
+      <p class="instructions">Tap the button above to take a photo of a painting. We'll identify it and show you the audioguide.</p>
+      
+      <!-- SEO: Hidden descriptive text for search engines -->
+      <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+        <h2>Free National Gallery London Audioguide</h2>
+        <p>Discover free audio guides for The National Gallery in London. This free audioguide service allows visitors to take a photo of any painting in the museum and instantly access audio commentary in multiple languages including English, Spanish, French, Chinese, Portuguese, and Italian. No app download required - simply use your mobile phone's camera to identify artworks and listen to expert commentary. Perfect for visitors to Trafalgar Square looking for a free alternative to paid museum audio guides.</p>
+        <h3>How to Use the Free National Gallery Audioguide</h3>
+        <p>Visit The National Gallery in London and use this free audioguide service. Simply take a photo of any painting using your mobile device, and our system will identify the artwork and provide you with audio commentary. The service works entirely in your web browser - no app installation needed. Available in English, Español, Français, 中文, Português, and Italiano.</p>
+        <h3>About The National Gallery London</h3>
+        <p>The National Gallery is one of London's most famous art museums, located in Trafalgar Square. It houses a collection of over 2,300 paintings dating from the mid-13th century to 1900. This free audioguide helps visitors explore the gallery's masterpieces with audio commentary.</p>
+      </div>
+
+      <input type="file" id="file-input" accept="image/*" capture="environment">
+    </div>
+  </div>
+
+  <div class="artwork-screen" id="artwork-screen">
+    <button class="back-button" id="back-button" aria-label="Go back">←</button>
+    <h2 class="artwork-title" id="artwork-title"></h2>
+    <div class="container">
+      <div class="artwork-image-container">
+        <img class="artwork-image" id="artwork-image" src="" alt="National Gallery London painting artwork">
+      </div>
+      
+      <div class="artwork-info">
+        <div>
+          <p class="artwork-artist" id="artwork-artist"></p>
+          <p class="artwork-date" id="artwork-date"></p>
+        </div>
+
+        <div>
+          <div class="language-selector">
+            <select class="language-select" id="language-select">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="zh">中文</option>
+              <option value="pt_br">Português (Brasil)</option>
+              <option value="it">Italiano</option>
+            </select>
+          </div>
+
+          <div class="audio-player">
+            <button class="play-pause-button" id="play-pause-button" aria-label="Play/Pause">
+              <svg class="play-pause-icon" id="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg class="play-pause-icon" id="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+              </svg>
+            </button>
+            <div class="time-display" id="time-display">0:00/0:00</div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="#" id="source-link" class="source-link" target="_blank" rel="noopener noreferrer" style="display: none;">Source</a>
+    </div>
+  </div>
+
+  <audio id="audio-element" class="hidden-audio" preload="metadata"></audio>
+
+  <div class="loading" id="loading">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
