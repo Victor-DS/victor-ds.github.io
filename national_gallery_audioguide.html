@@ -198,8 +198,22 @@
       color: #2c2c2c;
     }
 
+    .artwork-title {
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: #2c2c2c;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+      padding: 0 20px;
+      text-align: center;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .artwork-image-container {
-      margin-top: 2rem;
+      margin-top: 0;
       margin-bottom: 2rem;
       display: flex;
       justify-content: center;
@@ -222,14 +236,6 @@
       flex-direction: column;
       justify-content: space-between;
       padding-bottom: 2rem;
-    }
-
-    .artwork-title {
-      font-size: 1.75rem;
-      font-weight: 400;
-      color: #2c2c2c;
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
     }
 
     .artwork-artist {
@@ -378,6 +384,8 @@
 
       .artwork-title {
         font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
       }
 
       .artwork-artist {
@@ -385,7 +393,7 @@
       }
 
       .artwork-image-container {
-        margin-top: 1.5rem;
+        margin-top: 0;
         margin-bottom: 1.5rem;
       }
     }
@@ -413,6 +421,8 @@
 
       .artwork-title {
         font-size: 1.35rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
       }
 
       .artwork-artist {
@@ -445,6 +455,7 @@
 
   <div class="artwork-screen" id="artwork-screen">
     <button class="back-button" id="back-button" aria-label="Go back">←</button>
+    <h2 class="artwork-title" id="artwork-title"></h2>
     <div class="container">
       <div class="artwork-image-container">
         <img class="artwork-image" id="artwork-image" src="" alt="Artwork">
@@ -452,7 +463,6 @@
       
       <div class="artwork-info">
         <div>
-          <h2 class="artwork-title" id="artwork-title"></h2>
           <p class="artwork-artist" id="artwork-artist"></p>
           <p class="artwork-date" id="artwork-date"></p>
         </div>
