@@ -295,10 +295,15 @@ window.addEventListener('popstate', (event) => {
 });
 
 // Set viewport height to account for mobile browser UI
+// window.innerHeight gives the actual visible viewport (excluding browser UI)
+// We use this directly to ensure content fits in the visible area
 function setViewportHeight() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  const actualHeight = window.innerHeight;
+  document.documentElement.style.setProperty('--actual-vh', `${actualHeight}px`);
 }
+
+// Set viewport height immediately (before page load)
+setViewportHeight();
 
 // Initialize history state on page load
 window.addEventListener('load', () => {

@@ -67,6 +67,21 @@
   </script>
   
   <link rel="stylesheet" href="styles.css">
+  <script>
+    // Set viewport height immediately to account for mobile browser UI
+    // window.innerHeight gives the actual visible viewport (excluding browser address bar)
+    (function() {
+      function setViewportHeight() {
+        const actualHeight = window.innerHeight;
+        document.documentElement.style.setProperty('--actual-vh', `${actualHeight}px`);
+      }
+      setViewportHeight();
+      window.addEventListener('resize', setViewportHeight);
+      window.addEventListener('orientationchange', function() {
+        setTimeout(setViewportHeight, 100);
+      });
+    })();
+  </script>
 </head>
 <body>
   <div class="home-screen" id="home-screen">
