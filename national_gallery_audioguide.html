@@ -717,6 +717,9 @@
       homeScreen.classList.add('hidden');
       artworkScreen.classList.add('show');
       
+      // Push state to history so back button/swipe goes back to home screen
+      history.pushState({ screen: 'artwork' }, '', '#artwork');
+      
       // Load default language (English)
       loadAudio('en');
     }
@@ -786,8 +789,8 @@
       }
     }
 
-    // Go back to home screen
-    function goBack() {
+    // Update UI to show home screen
+    function showHomeScreen() {
       artworkScreen.classList.remove('show');
       homeScreen.classList.remove('hidden');
       audioElement.pause();
@@ -797,6 +800,38 @@
       pauseIcon.style.display = 'none';
       timeDisplay.textContent = '0:00/0:00';
     }
+
+    // Go back to home screen (called from back button click)
+    function goBack() {
+      // Use history.back() to go back in history
+      // This will trigger the popstate event, which will handle the UI update
+      history.back();
+    }
+
+    // Handle browser back button/swipe gesture
+    window.addEventListener('popstate', (event) => {
+      // When user goes back (via gesture or back button), show home screen
+      if (artworkScreen.classList.contains('show')) {
+        showHomeScreen();
+      }
+    });
+
+    // Initialize history state on page load
+    window.addEventListener('load', () => {
+      // Remove hash if present
+      if (window.location.hash) {
+        window.location.hash = '';
+      }
+      
+      // Initialize with home state if no state exists
+      if (!history.state) {
+        history.replaceState({ screen: 'home' }, '', window.location.pathname);
+      }
+      
+      // Ensure home screen is shown on initial load
+      homeScreen.classList.remove('hidden');
+      artworkScreen.classList.remove('show');
+    });
 
     // Event listeners
     cameraButton.addEventListener('click', () => {
