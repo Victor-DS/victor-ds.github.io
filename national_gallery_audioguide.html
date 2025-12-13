@@ -772,23 +772,46 @@
               // Remove data URI prefix if present
               const base64Image = e.target.result.split(',')[1] || e.target.result;
               
-              const response = await fetch(`${API_BASE_URL}/ngl/public`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  image: base64Image
-                })
-              });
+              // Create AbortController for timeout
+              const controller = new AbortController();
+              const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
               
-              if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.message || `HTTP error! status: ${response.status}`);
+              try {
+                const response = await fetch(`${API_BASE_URL}/ngl/public`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    image: base64Image
+                  }),
+                  signal: controller.signal,
+                  mode: 'cors',
+                  credentials: 'omit'
+                });
+                
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                  const error = await response.json();
+                  throw new Error(error.message || `HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                resolve(data);
+              } catch (fetchError) {
+                clearTimeout(timeoutId);
+                
+                // Handle specific error types
+                if (fetchError.name === 'AbortError') {
+                  throw new Error('Request timeout. Please check your connection and try again.');
+                } else if (fetchError.name === 'TypeError' && fetchError.message.includes('fetch')) {
+                  // Network error or CORS issue
+                  throw new Error('Network error. Please check your internet connection. If using Brave browser, try disabling shields for this site.');
+                } else {
+                  throw fetchError;
+                }
               }
-              
-              const data = await response.json();
-              resolve(data);
             } catch (error) {
               reject(error);
             }
@@ -883,11 +906,19 @@
           errorMessage = 'No artwork found. Please try another photo.';
         } else if (error.message.includes('429')) {
           errorMessage = 'Too many requests. Please try again in a moment.';
+        } else if (error.message.includes('Network error') || error.message.includes('fetch') || error.message.includes('Failed to fetch')) {
+          // Check if Brave browser
+          const isBrave = navigator.brave && (await navigator.brave.isBrave().catch(() => false));
+          if (isBrave) {
+            errorMessage = 'Network blocked. Please disable Brave Shields for this site and try again.';
+          } else {
+            errorMessage = error.message || 'Network error. Please check your connection.';
+          }
         } else if (error.message) {
           errorMessage = error.message;
         }
         
-        showToast(errorMessage, 5000);
+        showToast(errorMessage, 6000);
       } finally {
         loading.classList.remove('show');
         // Reset file input
