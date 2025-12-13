@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   
@@ -72,18 +72,21 @@
       box-sizing: border-box;
     }
 
+    html {
+      height: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: #ffffff;
-      min-height: 100vh;
-      height: 100vh;
-      overflow-y: auto;
+      min-height: 100%;
+      width: 100%;
       overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
       padding: 0;
       margin: 0;
       color: #2c2c2c;
+      position: relative;
     }
 
     .container {
@@ -93,18 +96,19 @@
       text-align: center;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
       padding: 0 20px;
       box-sizing: border-box;
     }
 
+    .home-screen .container {
+      min-height: 100vh;
+      justify-content: space-between;
+      padding-bottom: 2rem;
+    }
+
     .artwork-screen .container {
-      flex: 1;
-      min-height: 0;
       padding-top: 0;
-      padding-bottom: 0;
-      overflow-y: auto;
-      overflow-x: hidden;
+      padding-bottom: 2rem;
       display: flex;
       flex-direction: column;
     }
@@ -118,6 +122,7 @@
       color: #2c2c2c;
       letter-spacing: -0.03em;
       flex-shrink: 0;
+      padding-bottom: 1rem;
     }
 
     .button-container {
@@ -126,7 +131,7 @@
       align-items: center;
       justify-content: center;
       min-height: 200px;
-      flex-shrink: 1;
+      flex-shrink: 0;
       padding: 1rem 0;
     }
 
@@ -246,6 +251,7 @@
       min-height: 100vh;
       width: 100%;
       position: relative;
+      padding-bottom: 2rem;
     }
 
     .artwork-screen.show {
@@ -257,6 +263,7 @@
       flex-direction: column;
       min-height: 100vh;
       width: 100%;
+      position: relative;
     }
 
     .home-screen.hidden {
@@ -312,7 +319,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex: 1;
+      flex-shrink: 0;
       min-height: 200px;
       max-height: 50vh;
       overflow: hidden;
