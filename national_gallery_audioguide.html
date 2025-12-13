@@ -100,7 +100,10 @@
       flex: 1;
       min-height: 0;
       padding-top: 0;
+      padding-bottom: 0;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     h1 {
@@ -419,6 +422,24 @@
       font-variant-numeric: tabular-nums;
     }
 
+    .source-link {
+      display: block;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: #6b6b6b;
+      text-decoration: underline;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      padding-bottom: 1rem;
+      flex-shrink: 0;
+      transition: color 0.2s ease;
+    }
+
+    .source-link:hover {
+      color: #2c2c2c;
+    }
+
     .loading {
       display: none;
       position: fixed;
@@ -624,6 +645,8 @@
           </div>
         </div>
       </div>
+      
+      <a href="#" id="source-link" class="source-link" target="_blank" rel="noopener noreferrer" style="display: none;">Source</a>
     </div>
   </div>
 
@@ -636,7 +659,7 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const API_BASE_URL = 'https://9lhbtx0wcl.execute-api.us-east-1.amazonaws.com/prod';
+    const API_BASE_URL = 'https://p60s08iev4.execute-api.us-east-1.amazonaws.com/prod';
     
     const cameraButton = document.getElementById('camera-button');
     const fileInput = document.getElementById('file-input');
@@ -656,6 +679,7 @@
     const pauseIcon = document.getElementById('pause-icon');
     const timeDisplay = document.getElementById('time-display');
     const audioElement = document.getElementById('audio-element');
+    const sourceLink = document.getElementById('source-link');
     
     let currentArtworkData = null;
 
@@ -787,6 +811,14 @@
       artworkArtist.textContent = data.artist;
       artworkDate.textContent = data.date;
       
+      // Handle source link
+      if (data.source && data.source !== 'Unknown') {
+        sourceLink.href = data.source;
+        sourceLink.style.display = 'block';
+      } else {
+        sourceLink.style.display = 'none';
+      }
+      
       // Show artwork screen, hide home screen
       homeScreen.classList.add('hidden');
       artworkScreen.classList.add('show');
@@ -873,6 +905,8 @@
       playIcon.style.display = 'block';
       pauseIcon.style.display = 'none';
       timeDisplay.textContent = '0:00/0:00';
+      sourceLink.style.display = 'none';
+      sourceLink.href = '#';
     }
 
     // Go back to home screen (called from back button click)
