@@ -21,6 +21,7 @@ const audioElement = document.getElementById('audio-element');
 const sourceLink = document.getElementById('source-link');
 
 let currentArtworkData = null;
+let selectedLanguage = 'en'; // Store the selected language
 
 // Show toast notification
 function showToast(message, duration = 3000) {
@@ -188,8 +189,11 @@ function displayArtwork(data) {
   // Push state to history so back button/swipe goes back to home screen
   history.pushState({ screen: 'artwork' }, '', '#artwork');
   
-  // Load default language (English)
-  loadAudio('en');
+  // Set the language selector to the last selected language
+  languageSelect.value = selectedLanguage;
+  
+  // Load audio for the selected language
+  loadAudio(selectedLanguage);
 }
 
 // Load audio for selected language
@@ -348,7 +352,10 @@ languageSelect.addEventListener('change', (e) => {
   playIcon.style.display = 'block';
   pauseIcon.style.display = 'none';
   
-  loadAudio(e.target.value);
+  // Store the selected language
+  selectedLanguage = e.target.value;
+  
+  loadAudio(selectedLanguage);
   
   if (wasPlaying) {
     audioElement.addEventListener('loadeddata', () => {
